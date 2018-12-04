@@ -28,7 +28,6 @@ class App extends Component {
       this.setState({ posts: res.data })
     })
   }
-  
 
   updatePost(id, text) {
     //updating id and text of post using Axios.put where ID matches the post.id, returning the state
@@ -44,6 +43,7 @@ class App extends Component {
       .delete(`https://practiceapi.devmountain.com/api/posts?id=${id}`)
       .then(res => {
         this.setState({ posts: res.data })
+        console.log(res.data)
       })
   }
 
@@ -62,7 +62,7 @@ class App extends Component {
         )}`
       )
       .then(res => this.setState({ posts: res.data }))
-      // .catch()
+    // .catch()
   }
   handleChange(e) {
     // console.log(e.target.value)
@@ -81,7 +81,7 @@ class App extends Component {
 
         <section className="App__content">
           <Compose createPostFn={this.createPost} />
-          { posts.map(post => (
+          {posts.map(post => (
             <Post
               date={post.date}
               key={post.id}
